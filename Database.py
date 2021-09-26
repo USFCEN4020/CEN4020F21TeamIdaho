@@ -24,4 +24,3 @@ db.commit()
 cursor.execute("DELETE FROM user")
 
 db.commit()
-print(cursor.fetchall())
