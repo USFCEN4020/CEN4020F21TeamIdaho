@@ -18,9 +18,9 @@ last_name  VARCHAR(20) NOT NULL);
 # run this file if you want to empty the database #
 ###################################################
 
-db.commit()
+def emptyDatabase():
+    db.commit()
 
-#enter SQL queries here
-cursor.execute("DELETE FROM user")
-
-db.commit()
+    #enter SQL queries here
+    cursor.execute("DELETE FROM user")
+    db.commit()
