@@ -177,7 +177,9 @@ def LoginAccount(username,password):
                             "3. Targeted Advertising\n"
                             "4. None of them, return back to menu\n")
                     # Using a boolean variable when it's False, it will go to another function (to be made later?) and actively turn off the features
-                    onEmail, onSMS, onTargetAd = True
+                    onEmail = True
+                    onSMS = True
+                    onTargetAd = True
                     intChoice = input("Please input: ")
                     intChoice = int(intChoice)
                     if intChoice == 1: 
