@@ -100,11 +100,19 @@ def main():
                     database.editEducation(LoggedIn[1])
 
                 elif choice == 12:
-                    userRequested = ui.single_line_alphaString("Type the username of the user you want to see the profile for or \"exit\" to return: ")
-                    while((not database.checkUsernameExists(userRequested)) and userRequested.lower() != "exit"):
-                        print("That username isn't in the system. Try Again or type exit to leave.\n")
-                        userRequested = ui.single_line_alphaString("Type the username of the user you want to see the profile for or \"exit\" to return: ")
-                    
+                    userRequested = ui.single_line_alphaString(
+                        'Type the username of the user you want to see the profile for or "exit" to return: '
+                    )
+                    while (
+                        not database.checkUsernameExists(userRequested)
+                    ) and userRequested.lower() != "exit":
+                        print(
+                            "That username isn't in the system. Try Again or type exit to leave.\n"
+                        )
+                        userRequested = ui.single_line_alphaString(
+                            'Type the username of the user you want to see the profile for or "exit" to return: '
+                        )
+
                     if userRequested.lower() != "exit":
                         database.displayUser(userRequested)
 
@@ -138,4 +146,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
