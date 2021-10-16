@@ -1097,28 +1097,16 @@ def main():
                     editJob(LoggedIn[1])
 
                 elif choice == 12:
-<<<<<<< HEAD
                     userRequested = single_line_alphaString(
                         'Type the username of the user you want to see the profile for or "exit" to return: '
                     )
                     while (
                         not checkUsernameExists(userRequested)
-=======
-                    userRequested = ui.single_line_alphaString(
-                        'Type the username of the user you want to see the profile for or "exit" to return: '
-                    )
-                    while (
-                        not database.checkUsernameExists(userRequested)
->>>>>>> d23e17d55bb6236170bfbc49db36858643b560ac
                     ) and userRequested.lower() != "exit":
                         print(
                             "That username isn't in the system. Try Again or type exit to leave.\n"
                         )
-<<<<<<< HEAD
                         userRequested = single_line_alphaString(
-=======
-                        userRequested = ui.single_line_alphaString(
->>>>>>> d23e17d55bb6236170bfbc49db36858643b560ac
                             'Type the username of the user you want to see the profile for or "exit" to return: '
                         )
 
