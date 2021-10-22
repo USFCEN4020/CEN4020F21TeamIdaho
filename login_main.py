@@ -4,7 +4,7 @@ import re
 import sqlite3
 
 import ui
-import database
+import Database
 
 ########################################################################################## Logged In Functions
 
@@ -657,9 +657,9 @@ def exec_friend_request(me):
         )
         if FriendChoice == 2:
             #delete both users' request from db
-            reject_request = "DELETE * FROM friends WHERE username = ? AND stranger = ?"
+            reject_request = "DELETE FROM friends WHERE username = ? AND stranger = ?"
             cursor.execute(reject_request, [(me), (stranger)])
-            reject_request2 = "DELETE * FROM friends WHERE username = ? AND stranger = ?"
+            reject_request2 = "DELETE FROM friends WHERE username = ? AND stranger = ?"
             cursor.execute(reject_request2, [(stranger), (me)])
             db.commit()
             print("You have rejected friend request from", stranger)
@@ -763,6 +763,39 @@ def pending_friend(username):
     else:
         return False
         #db.close()
+
+def deleteJob(username):
+    with sqlite3.connect("User.db") as db:
+        cursor = db.cursor()
+
+    ## Checking if they already have created a profile
+    job_count = ("SELECT * FROM jobs WHERE username = ?")
+    cursor.execute(job_count, [(username)])
+    number = cursor.fetchall()
+
+    print("Number of jobs: ", len(number))
+
+    if (len(number)) == 0:
+        print(
+            "You haven't created a job yet!"
+        )
+    else:
+        displayUserJob(username)
+        #jobTitle = chooseJob_forD(username) #it's jobs' title
+        print("Select One of the Following to Delete: ")
+        for result in number:
+            print(result[0], ". ", result[2])
+
+        choice = integer_in_range("Select One of the Jobs to Delete by number: ", 1, len(number), "NULL")
+        jobTitle = (number[choice - 1][2])
+        # choose which job here
+
+        delete_job = "DELETE FROM jobs WHERE username = ? AND title = ?"
+        cursor.execute(delete_job, [(username), (jobTitle)])
+        db.commit()
+        print("This job has been deleted: ", jobTitle)
+        db.close()
+
 
 ######################################################################################################## UI Functions
 
@@ -1016,8 +1049,8 @@ def main():
 
             print(ui.logged_in_menu)
 
-            choice = integer_in_range("Pick an Option: ", 1, 16, ui.logged_in_menu)
-            while choice != 16:
+            choice = integer_in_range("Pick an Option: ", 1, 17, ui.logged_in_menu)
+            while choice != 17:
 
                 if choice == 1:
                     jobBoard()
@@ -1123,9 +1156,12 @@ def main():
                 elif choice == 15:
                     listFriends(LoggedIn[1])
 
+                elif choice == 16:
+                    deleteJob(LoggedIn[1])
+
                 print(ui.logged_in_menu)
                 choice = integer_in_range(
-                    "Pick an Option: ", 1, 16, ui.logged_in_menu
+                    "Pick an Option: ", 1, 17, ui.logged_in_menu
                 )
 
 
