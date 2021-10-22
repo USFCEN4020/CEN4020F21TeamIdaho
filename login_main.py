@@ -787,15 +787,96 @@ def deleteJob(username):
             print(result[0], ". ", result[2])
 
         choice = integer_in_range("Select One of the Jobs to Delete by number: ", 1, len(number), "NULL")
-        jobTitle = (number[choice - 1][2])
+        jobTitle = (number[choice - 1][2]) #number 2d list
         # choose which job here
 
+        #1. delete job from jobs talble
+        #2. updated status for apply table
         delete_job = "DELETE FROM jobs WHERE username = ? AND title = ?"
         cursor.execute(delete_job, [(username), (jobTitle)])
         db.commit()
+
+        find_status = "SELECT * FROM applyJobs WHERE publisher = ? AND title = ?"
+        cursor.execute(find_status, [(username), (jobTitle)])
+        find_results = cursor.fetchall()
+
+        if len(find_results) > 0:
+            update_status = ''' UPDATE applyJobs SET status = ? WHERE title = ?'''
+            cursor.execute(update_status, [("deleted"), (jobTitle)])
+            db.commit()
+
         print("This job has been deleted: ", jobTitle)
         db.close()
 
+
+
+def deletion_detector(username):
+    with sqlite3.connect("User.db") as db:
+        cursor = db.cursor()
+
+    find_deleted = "SELECT * FROM applyJobs WHERE username = ? AND status = 'deleted'"
+    cursor.execute(find_deleted, [(username)])
+    deleted = cursor.fetchall()
+    if len(deleted) > 0:
+        print("Unfortunately, following job(s) you applied for has been deleted by the publisher: ")
+        for job in deleted:
+            print("Title: ", job[2])
+
+        #db.close()
+    else:
+        return 0
+        #db.close()
+
+def listJobsApplied(username):
+    with sqlite3.connect("User.db") as db:
+        cursor = db.cursor()
+
+    find_JobsApplied = "SELECT * FROM applyJobs WHERE username = ? AND status = 'applied'"
+    cursor.execute(find_JobsApplied, [(username)])
+    results = cursor.fetchall()
+
+    print("Your applied jobs: \n")
+    for applied in results:
+        print("Title: ", applied[2])
+        #print("Publisher: ", applied[1])
+
+
+def listJobsSaved(username):
+    with sqlite3.connect("User.db") as db:
+        cursor = db.cursor()
+
+    find_JobsSaved = "SELECT * FROM applyJobs WHERE username = ? AND status = 'saved'"
+    cursor.execute(find_JobsSaved, [(username)])
+    results = cursor.fetchall()
+
+    print("Your saved jobs: \n")
+    for saved in results:
+        print("Title: ", saved[2])
+
+def listJobsNotApplied(username):
+    with sqlite3.connect("User.db") as db:
+        cursor = db.cursor()
+
+    find_JobsApplied = "SELECT * FROM applyJobs WHERE username = ? AND status = 'applied'"
+    cursor.execute(find_JobsApplied, [(username)])
+    results = cursor.fetchall()
+    AppliedJobs = []
+    for applied in results:
+        AppliedJobs.append(applied[2])  #applied job's title
+
+    cursor.execute("SELECT * FROM jobs")
+    job_results = cursor.fetchall()
+    AllJobs = []
+    for each in job_results:
+        AllJobs.append(each[2]) #all jobs' title
+
+    #NotApplied = []
+    NotApplied = list(set(AppliedJobs).intersection(set(AllJobs))) #intersection
+    print("Your not applied jobs: \n")
+    for x in NotApplied
+        print(x)
+
+    #db.close()
 
 ######################################################################################################## UI Functions
 
