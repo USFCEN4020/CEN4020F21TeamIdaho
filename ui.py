@@ -54,21 +54,26 @@ general_menu = """
 
 logged_in_menu = """
 1. Search for a Job / Internship
-2. Find Someone That You May Know
-3. Learn a New Skill
-4. InCollege Important Links
-5. Useful Links
-6. Create Your User Profile
-7. Create Education
-8. Create a Job
-9. Edit Your User Profile
-10. Edit Your Education
-11. Edit Jobs
-12. Display a User Profile
-13. Send a Friend Request
-14. List Pending Requests
-15. Show My Network
-16. Exit
+2. Apply for a Job
+3. List of saved jobs
+4. List of applied jobs
+5. List of jobs not applied to yet
+6. Find Someone That You May Know
+7. Learn a New Skill
+8. InCollege Important Links
+9. Useful Links
+10. Create Your User Profile
+11. Create Education
+12. Create a Job
+13. Edit Your User Profile
+14. Edit Your Education
+15. Edit Jobs
+16. Delete Jobs
+17. Display a User Profile
+18. Send a Friend Request
+19. List Pending Requests
+20. Show My Network
+21. Exit
 """
 
 search_menu = """

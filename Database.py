@@ -70,23 +70,13 @@ status VARCHAR(20));
 # 3. saved
 cursor.execute(
     """
-CREATE TABLE IF NOT EXISTS applyJobs(
-username VARCHAR(20) NOT NULL,
-publisher VARCHAR(20),
-title VARCHAR(20) NOT NULL,
-status VARCHAR(20));
-"""
-)
-
-#username: applicant
-cursor.execute(
-    """
 CREATE TABLE IF NOT EXISTS applyInfo(
 username VARCHAR(20) NOT NULL,
 title VARCHAR(20) NOT NULL,
 graduateDate VARCHAR(20),
 startDate VARCHAR(20),
-explaining VARCHAR(250));
+explaining VARCHAR(250),
+status VARCHAR(20));
 """
 )
 
