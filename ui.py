@@ -28,7 +28,7 @@ Please choose one to learn more about:
 4. User Agreement
 5. Privacy Policy
 6. Cookie Policy
-7. Coyright Policy
+7. Copyright Policy
 8. Brand Policy
 9. Languages
 10. Return to the main menu
@@ -52,23 +52,40 @@ general_menu = """
 7. Return
 """
 
+list_job_menu = """
+1. View your list of applied Jobs
+2. View your list of Jobs not applied to yet
+3. Go back
+"""
+
 logged_in_menu = """
 1. Search for a Job / Internship
-2. Find Someone That You May Know
-3. Learn a New Skill
-4. InCollege Important Links
-5. Useful Links
-6. Create Your User Profile
-7. Create Education
-8. Create a Job
-9. Edit Your User Profile
-10. Edit Your Education
-11. Edit Jobs
-12. Display a User Profile
-13. Send a Friend Request
-14. List Pending Requests
-15. Show My Network
-16. Exit
+2. Apply for a Job
+3. List of Applied / Not-Applied Jobs
+4. List of Saved Jobs / Unsave a Job
+5. Find Someone That You May Know
+6. Learn a New Skill
+7. InCollege Important Links
+8. Useful Links
+9. Create Your User Profile
+10. Create Education
+11. Create a Job
+12. Edit Your User Profile
+13. Edit Your Education
+14. Edit Jobs
+15. Delete Jobs
+16. Display a User Profile
+17. Send a Friend Request
+18. List Pending Requests
+19. Show My Network
+20. Send a message
+21. Exit
+"""
+
+message_menu = """
+1. Standard Student Messaging
+2. Plus Student Messaging
+3. Go back
 """
 
 search_menu = """
